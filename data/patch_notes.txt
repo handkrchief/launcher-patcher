@@ -1,0 +1,9 @@
+Patch v1.0.3
+- Fixed crash when entering zone 3
+- Added new skins to the shop
+- Improved performance on older systems
+
+Patch v1.0.2
+- Added launcher update progress bar
+- Initial release of the news system
+
