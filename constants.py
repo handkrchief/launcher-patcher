@@ -5,3 +5,6 @@ BAR_WIDTH = 400
 BAR_HEIGHT = 30
 BAR_X = 300
 BAR_Y = 420
+
+PATCH_PREFIX = "patch_"
+PATCH_SUFFIX = ".zip"
