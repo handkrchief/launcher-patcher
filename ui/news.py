@@ -1,11 +1,11 @@
+import requests
 from tkinter import Frame, Text, Scrollbar, LEFT, RIGHT, Y, BOTH, END
 
-def create_news_section(canvas, root, bar_x, bar_y, width=400, height=300, file_path="data/patch_notes.txt"):
+def create_news_section(canvas, root, bar_x, bar_y, patch_notes_url, width=400, height=300):
     # Create frame to hold the text and scrollbar
     news_frame = Frame(root, width=width, height=height)
     news_frame.pack_propagate(False)
 
-    # Create the Text widget
     news_text = Text(news_frame, wrap='word', font=("Helvetica", 10),
                      cursor="arrow", bg="white", fg="black", bd=1, highlightthickness=0)
     scrollbar = Scrollbar(news_frame, command=news_text.yview)
@@ -14,15 +14,16 @@ def create_news_section(canvas, root, bar_x, bar_y, width=400, height=300, file_
     news_text.pack(side=LEFT, fill=BOTH, expand=True)
     scrollbar.pack(side=RIGHT, fill=Y)
 
-    # Load patch notes from file
+    # Fetch patch notes from URL
     try:
-        with open(file_path, "r", encoding="utf-8") as file:
-            content = file.read()
-    except FileNotFoundError:
-        content = "No patch notes found."
+        response = requests.get(patch_notes_url, timeout=10)
+        response.raise_for_status()
+        content = response.text.strip()
+    except requests.exceptions.RequestException:
+        content = "Failed to load patch notes."
 
     news_text.insert(END, content)
     news_text.config(state='disabled')
 
     # Embed in canvas above the progress bar
-    canvas.create_window(bar_x, bar_y - height - 20, anchor="nw", window=news_frame)
+    canvas.create_window(bar_x, bar_y - height - 50, anchor="nw", window=news_frame)

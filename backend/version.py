@@ -1,6 +1,8 @@
 import requests
 from constants import PATCH_PREFIX, PATCH_SUFFIX
+from backend.utils import get_launcher_root
 
+# Loads and reads a version file and returns the current version as an integer.
 def read_local_version(path: str):
     try:
         with open(path, 'r') as file:
@@ -12,7 +14,8 @@ def read_local_version(path: str):
         return 0
     except ValueError:
         raise Exception(f"Error: Invalid integer format in file: {path}")
-    
+
+# Fetches the current version of the game from the remote server.
 def fetch_remote_version(url: str):
     try:
         response = requests.get(url, timeout=10)
@@ -24,6 +27,7 @@ def fetch_remote_version(url: str):
     except ValueError:
         raise Exception("Error: Invalid version format received from server.")
     
+# Generates a list of file names that are needed to download to be up to date.
 def generate_patch_list(local_version: int, remote_version: int):
     patch_list = []
 
@@ -34,9 +38,11 @@ def generate_patch_list(local_version: int, remote_version: int):
     else:
         for i in range(local_version + 1, remote_version + 1):
             patch_list.append(PATCH_PREFIX + str(i) + PATCH_SUFFIX)
-    
+
     return patch_list
 
-
+def write_local_version(path: str, version: int):
+    with open(path, "w") as file:
+        file.write(str(version))
 
     
