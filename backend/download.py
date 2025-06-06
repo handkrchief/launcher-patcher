@@ -13,6 +13,6 @@ def download_patch_file(url: str, save_path: str, update_progress: callable):
             for chunk in response.iter_content(chunk_size=8192):
                 f.write(chunk)
                 downloaded += len(chunk)
-                update_progress(downloaded / total_size)
+                update_progress(downloaded / total_size)  # Update progress after each chunk
         
-        update_progress(1.0)
+        update_progress(1.0)  # Ensure progress is set to 100% at the end

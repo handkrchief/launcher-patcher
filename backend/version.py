@@ -41,6 +41,7 @@ def generate_patch_list(local_version: int, remote_version: int):
 
     return patch_list
 
+# Writes a passed in version to the local version.dat file.
 def write_local_version(path: str, version: int):
     with open(path, "w") as file:
         file.write(str(version))

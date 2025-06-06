@@ -1,13 +1,13 @@
 import requests
 from tkinter import Frame, Text, Scrollbar, LEFT, RIGHT, Y, BOTH, END
 
-def create_news_section(canvas, root, bar_x, bar_y, patch_notes_url, width=400, height=300):
+def create_news_section(canvas, root, bar_x, bar_y, patch_notes_url, width=325, height=225):
     # Create frame to hold the text and scrollbar
     news_frame = Frame(root, width=width, height=height)
     news_frame.pack_propagate(False)
 
     news_text = Text(news_frame, wrap='word', font=("Helvetica", 10),
-                     cursor="arrow", bg="white", fg="black", bd=1, highlightthickness=0)
+                     cursor="arrow", bg="#3f2832", fg="#fff8e7", bd=0, highlightthickness=0)
     scrollbar = Scrollbar(news_frame, command=news_text.yview)
     news_text.configure(yscrollcommand=scrollbar.set)
 
@@ -26,4 +26,4 @@ def create_news_section(canvas, root, bar_x, bar_y, patch_notes_url, width=400, 
     news_text.config(state='disabled')
 
     # Embed in canvas above the progress bar
-    canvas.create_window(bar_x, bar_y - height - 50, anchor="nw", window=news_frame)
+    canvas.create_window(bar_x, bar_y, anchor="nw", window=news_frame)
