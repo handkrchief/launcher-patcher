@@ -91,7 +91,6 @@ This creates a standalone `Launcher.exe` inside `dist/`.
 ## ✅ Notes
 
 - `version.dat` is automatically created on first patch if missing.
-- SHA checking logic can be added for integrity verification.
 - The `play` button only appears once patching completes successfully.
 - Designed to be easy to modify and reuse across games.
 
