@@ -48,7 +48,6 @@ game_directory/
 │   ├── play_enabled.png
 │   └── play_disabled.png
 ├── temp/             # Automatically created
-├── game_files/       # Your actual game contents
 ```
 
 - All patch files will be extracted directly into the **current working directory** where the launcher resides.
@@ -100,6 +99,7 @@ This creates a standalone `Launcher.exe` inside `dist/`.
 
 ![Folder Setup Screenshot](demo/folder_structure.png)
 
-🎥 [Watch Launcher in Action](demo/demo_video.mp4)
+<img width="739" height="433" alt="image" src="https://github.com/user-attachments/assets/7b389e9c-d11e-48ba-9ed9-c78f240462e8" />
+
 
 ---
